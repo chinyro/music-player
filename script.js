@@ -11,22 +11,22 @@ const songs = [
     {
     name: 'jacinto-1',
     displayName: 'Electric Chill Machine',
-    artist: Jacinto Design,
+    artist: 'Jacinto Design',
     },
     {
     name: 'jacinto-2',
     displayName: 'Seven Nation Army(Remix)',
-    artist: Jacinto Design,
+    artist: 'Jacinto Design',
     },
     {
     name: 'jacinto-3',
     displayName: 'Goodnight, Disco Queen',
-    artist: Jacinto Design,
+    artist: 'Jacinto Design',
     },
     {
     name: 'metric-1',
     displayName: 'Front Row (Remix)',
-    artist: Metric/Jacinto Design,
+    artist: 'Metric/Jacinto Design',
     },
 ];
 
@@ -60,6 +60,33 @@ function loadSong(song) {
     image.src = `img/${song.name}.jpg`;
 }
 
+//Current Song
+let songIndex = 0;
+
+//Preview Song
+function prevSong () {
+    songIndex--;
+    if (songIndex < 0) {
+        songIndex = songs.length -1;
+    }
+    loadSong(songs[songIndex]);
+    playSong();
+}
+
+//Next Song
+function nextSong () {
+    songIndex++;
+    if (songIndex > songs.length -1) {
+        songIndex = 0;
+    }
+    loadSong(songs[songIndex]);
+    playSong();
+}
+
 //On load - Select first song
-loadSong(songs[3]);
+loadSong(songs[songIndex]);
+
+//Event Listeners
+prevBtn.addEventListener('click', prevSong);
+nextBtn.addEventListener('click', nextSong);
 
